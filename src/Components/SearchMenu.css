@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  
+  .Box1 {
+    width: 3px;
+    height: 3px;
+    border: black 2px solid;
+    position: absolute;
+    right: 100px;
+  }
