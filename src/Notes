@@ -1,0 +1,44 @@
+ const getIcon = (weather) => {
+const getIcon = (weather) => {
+    let Icon;
+
+    if (!weather.main) {
+      return null;
+    }
+    // icon: haze, mist
+    switch (weather.main) {
+      case "Clouds":
+        Icon = <Cloudy />;
+        break;
+      case "Hail":
+        Icon = <Hail />;
+        break;
+      case "PartiallyCloudy":
+        Icon = <PartiallyCloud />;
+        break;
+      case "rainingWithSun":
+        Icon = <RainingWithSun />;
+        break;
+      case "Rain":
+        Icon = <Raining />;
+        break;
+      case "Snow with sun": //I don't know how to find
+        Icon = <SnowWithSun />;
+        break;
+      case "Snow":
+        Icon = <Snowing />;
+        break;
+      case "Clear":
+        Icon = <Sunny />;
+        break;
+      case "Thunderstorm":
+        Icon = <Thunderstorm />;
+        break;
+      default:
+        Icon = null;
+    }
+
+    return Icon;
+  };
+
+  const icon = getIcon(weather);

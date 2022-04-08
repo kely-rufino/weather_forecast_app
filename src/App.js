@@ -6,7 +6,6 @@ import { ReactComponent as Hail } from "./hail.svg";
 import { ReactComponent as PartiallyCloud } from "./partially_cloudy.svg";
 import { ReactComponent as RainingWithSun } from "./raining_with_sun.svg";
 import { ReactComponent as Raining } from "./raining.svg";
-import { ReactComponent as SnowWithSun } from "./snow_with_sun.svg";
 import { ReactComponent as Snowing } from "./snowing.svg";
 import { ReactComponent as Thunderstorm } from "./thunderstorm.svg";
 
@@ -52,48 +51,18 @@ function App() {
   }, [selectedCity]);
 
   const getIcon = (weather) => {
-    let Icon;
-
-    if (!weather.main) {
-      return null;
-    }
-    // icon: haze, mist
-    switch (weather.main) {
-      case "Clouds":
-        Icon = <Cloudy />;
-        break;
-      case "Hail":
-        Icon = <Hail />;
-        break;
-      case "PartiallyCloudy":
-        Icon = <PartiallyCloud />;
-        break;
-      case "rainingWithSun":
-        Icon = <RainingWithSun />;
-        break;
-      case "Rain":
-        Icon = <Raining />;
-        break;
-      case "Snow with sun": //I don't know how to find
-        Icon = <SnowWithSun />;
-        break;
-      case "Snow":
-        Icon = <Snowing />;
-        break;
-      case "Clear":
-        Icon = <Sunny />;
-        break;
-      case "Thunderstorm":
-        Icon = <Thunderstorm />;
-        break;
-      default:
-        Icon = null;
-    }
-
-    return Icon;
+    const iconsMap = {
+      Clouds: <Cloudy />,
+      Hail: <Hail />,
+      PartiallyCloudy: <PartiallyCloud />,
+      rainingWithSun: <RainingWithSun />,
+      Rain: <Raining />,
+      Snow: <Snowing />,
+      Clear: <Sunny />,
+      Thunderstorm: <Thunderstorm />,
+    };
+    return iconsMap[weather.main];
   };
-
-  const icon = getIcon(weather);
 
   return (
     <div className="App">
@@ -129,7 +98,7 @@ function App() {
           <h1>
             {selectedCity.name} {selectedCity.country} {selectedCity.weather}
           </h1>
-          <div className="icons">{icon}</div>
+          <div className="icons">{getIcon(weather)}</div>
           <div className="weatherDescription">{weather.description}</div>
         </div>
       )}
